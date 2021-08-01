@@ -1,6 +1,24 @@
 {
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "files.associations": {
+    "**/<dbt-project-dir>/**/*.yaml": "jinja-yaml",
+    "**/<dbt-project-dir>/**/*.yml": "jinja-yaml",
+    "**/<dbt-project-dir>/**/*.sql": "jinja-sql",
+    "**/<dbt-project-dir>/**/docs/**/*.md": "jinja-md"
+  },
   // "~/.pyenv/versions/3.9.6/envs/dbt_shop/bin/" # failed experiment to use pyenv
   "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/",
+  "python.envFile": "${workspaceFolder}/.vscode/.env",
   "python.terminal.activateEnvironment": true,
-  "python.terminal.activateEnvInCurrentTerminal": true
+  "python.terminal.activateEnvInCurrentTerminal": true,
+  "python.testing.nosetestsEnabled": false ,
+  "python.testing.promptToConfigure": false,
+  "python.testing.pytestEnabled": false,
+  "python.testing.unittestEnabled": false,
+  "sql.linter.executablePath": "/Users/daniel/git/dbrtly/dbt_shop/.venv/lib/python3.9/site-packages/sqlfluff/",
+  // toggling this setting sometimes fixes sql.linter.run when it gets stuck.
+  // "sql.linter.run": "onType" 
+  "sql.linter.run": "onSave"
 }

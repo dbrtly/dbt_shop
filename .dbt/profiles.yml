@@ -3,6 +3,17 @@ dbt_shop:
   outputs:
     dev:
       type: bigquery
+      method: oauth
+      project: daniel-bartley-sandbox
+      dataset: dbt_shop # You can also use "schema" here
+      threads: 4
+      timeout_seconds: 300
+      location: US # Optional, one of US or EU
+      priority: interactive
+      retries: 1
+
+    fancy:
+      type: bigquery
       method: "{{ env_var('DBT_METHOD') }}"
       project: "{{ env_var('DBT_PROJECT') }}"
       dataset: dbt_shop # You can also use "schema" here

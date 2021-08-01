@@ -55,8 +55,8 @@ joined as (
         customers.last_name,
         customer_orders__agg.first_order,
         customer_orders__agg.most_recent_order,
-        customer_orders__agg.count_of_customer_orders,
-        customer_orders__agg.count_of_customer_orders_delivered,
+        customer_orders__agg.count_of_customer_orders, 
+        customer_orders__agg.count_of_customer_orders_delivered, 
         customer_payments.customer_historical_value,
         customer_payments.customer_historical_value_delivered
 

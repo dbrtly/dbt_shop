@@ -1,0 +1,7 @@
+# .sqlfluffignore
+
+.dbt/
+.github/
+.pytest_cache/
+.venv/
+.vscode/
