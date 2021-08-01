@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: customer_orders
+    columns:
+      - name: customer_id
+        description: unique identifier of customers
+      - name: name
+        description: Customer first name and last name
+      - name: first_name
+        description: Customer first name
+      - name: last_name
+        description: Customer last name
+      - name: first_order_date
+        description: Date of customer's first order
+      - name: latest_order_date
+        description: Date of customer's most recent order
+      - name: count_of_customer_orders
+        description: Count of customer's order regardless of status
+      - name: count_of_customer_orders_delivered
+        description: Count of customer's order with status 'delivered'
+      - name: customer_historical_value
+        description: Total value of all sales to a customer
+      - name: customer_historical_value_delivered
+        description: Total value of all sales to a customer with status 'delivered'

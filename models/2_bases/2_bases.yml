@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: base_customer_orders
+    columns:
+      - name: order_id
+      - name: customer_id
+      - name: order_date
+      - name: customer_order_status
+      - name: is_delivered
+
+  - name: base_customer_payments
+    columns:
+      - name: customer_payment_id
+      - name: customer_order_id
+      - name: payment_method
+      - name: payment_status
+      - name: payment_amount
+      - name: created_at,
+      - name: _batched_at
+
+  - name: base_customer
+    columns:
+      - name: customer_id
+      - name: customer
+      - name: first_name
+      - name: last_name

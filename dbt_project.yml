@@ -1,0 +1,42 @@
+
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: dbt_shop
+version: '0.1.0'
+config-version: 2
+
+# This setting configures which 'profile' dbt uses for this project.
+profile: dbt_shop
+
+# These configurations specify where dbt should look for different types of files.
+# resource-path configure expecting a value of type array
+clean-targets: ['.dbt/artifacts']
+analysis-paths: ['analyses']
+macro-paths: ['macros']
+source-paths: ['models']
+data-paths: ['seeds']
+snapshot-paths: ['snapshots']
+test-paths: ['tests']
+
+# resource-path configure expecting a value of type string
+log-path: '.dbt/logs'
+modules-path: '.dbt/packages'
+target-path: '.dbt/artifacts'  # directory which will store compiled SQL files
+
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+models:
+  dbt_shop:
+    materialized: view 
+    # Applies to all files under models/example/
+    4_aggregates:
+      materialized: table
+
+seeds:
+  +quote_columns: false
+#  dbt_shop:
+
+    

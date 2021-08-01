@@ -1,0 +1,40 @@
+version: 2
+
+sources:
+  - name: jaffle_shop
+    description: A fictional e-commerce store for tutorial and demo purposes
+    project: dbt-tutorial
+    loader: dbt_labs
+    quoting:
+      database: true 
+      
+    tables:
+      - name: customers
+        description: Jaffle Shop customers
+
+      - name: customer_orders
+        identifier: orders
+        loaded_at_field: _etl_loaded_at
+
+        freshness:
+          warn_after:
+            count: 2
+            period: hour
+          error_after:
+            count: 8
+            period: hour
+
+        columns:
+          - name: id
+            description: Unique identifier of a customer order
+            tests:
+              - not_null
+              - unique
+          - name: user_id
+            description: Unique identifier of a jaffle_shop user
+          - name: order_date
+            description: Date of a customer_order
+          - name: status
+            description: Delivery status of a customer_order
+          - name: _etl_loaded_at
+            description: Unique identifier of a customer_order

@@ -1,0 +1,13 @@
+dbt_shop:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: "{{ env_var('DBT_METHOD') }}"
+      project: "{{ env_var('DBT_PROJECT') }}"
+      dataset: dbt_shop # You can also use "schema" here
+      threads: 4
+      timeout_seconds: 300
+      location: US # Optional, one of US or EU
+      priority: "{{ env_var('DBT_PRIORITY') }}"
+      retries: 1

@@ -1,0 +1,10 @@
+
+.dbt/artifacts/
+.dbt/logs/
+.dbt/packages/
+.pytest_cache/
+.venv/
+.ds_store
+.env
+dev.env
+

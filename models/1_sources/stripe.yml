@@ -1,0 +1,45 @@
+version: 2
+
+sources:
+  - name: stripe
+    description: A fictional stripe account of the jaffle_shop business for tutorial and demo purposes
+    project: dbt-tutorial
+    loader: dbt_labs
+    quoting:
+      database: true 
+      
+    tables:
+      - name: payments
+        description: Payments received via Strip account for Jaffle Shop
+        identifier: payment
+        loaded_at_field: _etl_loaded_at
+
+        freshness:
+          warn_after:
+            count: 2
+            period: hour
+          error_after:
+            count: 8
+            period: hour
+
+        columns:
+          - name: id
+            description: Unique identifier of a customer order
+            tests:
+              - not_null
+              - unique
+          - name: orderid
+            description: >
+              Unique identifier of a customer order.
+              Implies at most one payment per order.
+          - name: paymentmethod
+            description: payment method 
+          - name: status
+            description: payment status
+          - name: amount
+            description: full amount received by Jaffle Shop for the payment
+          - name: created
+            description: Timestamp when the payment was received
+          - name: _batched_at
+            description: Timestamp when the Stripe payment was loaded into bigquery
+            
