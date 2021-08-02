@@ -1,23 +1,24 @@
 with 
 
 customers as (
-    select * from {{ ref('base_customer') }} ),
+    select * from {{ ref('customer__base') }} ),
 
 orders as (
-    select * from {{ ref('base_customer_orders') }} ),
+    select * from {{ ref('customer_orders__curate') }} ),
 
 payments as (
-    select * from {{ ref('base_customer_payments') }} ),
+    select * from {{ ref('customer_payments__base') }} ),
 
 customer_orders__agg as (
 
     select
         customer_id,
 
-        min(order_date) as first_order,
-        max(order_date) as most_recent_order,
-        count(customer_order_id) as count_of_customer_orders,
-        count(if(is_delivered, true, null)) as count_of_customer_orders_delivered
+        {{ metric_min( 'order_date') }} as first_order,
+        {{ metric_max( 'order_date') }} as most_recent_order,
+        {{ metric_count( 'customer_order_id') }} as count_of_customer_orders,
+        {{ metric_count_when_boolean('customer_order_id', 'is_completed') }} 
+            as count_of_customer_orders_completed
         
     from orders
 
@@ -25,18 +26,13 @@ customer_orders__agg as (
 
 ),
 
-customer_payments as (
+customer_payments__agg as (
 
     select
         orders.customer_id,
-        sum(payments.payment_amount) as customer_historical_value,
-        sum(
-            if(
-                orders.is_delivered, 
-                payments.payment_amount, 
-                null
-            )
-        ) as customer_historical_value_delivered
+        {{ metric_sum('payments.payment_amount') }} as total_customer_historical_value,
+        {{ metric_sum_when_boolean('payments.payment_amount', 'orders.is_completed') }} 
+            as total_customer_historical_value_completed
 
     from payments
 
@@ -56,15 +52,15 @@ joined as (
         customer_orders__agg.first_order,
         customer_orders__agg.most_recent_order,
         customer_orders__agg.count_of_customer_orders, 
-        customer_orders__agg.count_of_customer_orders_delivered, 
-        customer_payments.customer_historical_value,
-        customer_payments.customer_historical_value_delivered
+        customer_orders__agg.count_of_customer_orders_completed, 
+        customer_payments__agg.total_customer_historical_value,
+        customer_payments__agg.total_customer_historical_value_completed,
 
     from customers
 
     left join customer_orders__agg using (customer_id)
 
-    left join customer_payments using (customer_id)
+    left join customer_payments__agg using (customer_id)
 
 )
 

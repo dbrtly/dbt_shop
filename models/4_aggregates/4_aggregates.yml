@@ -2,6 +2,17 @@ version: 2
 
 models:
   - name: customer_orders
+    # meta:
+    #  metriql:
+    #   measures:
+    #     count_of_customer_orders:
+    #       aggregation: sum
+    #       column: count_of_customer_orders
+    #     customer_historical_value:
+    #       aggregation: sum
+    #       column: customer_historical_value
+    #     dummy_measure:
+    #       sql: {measure.customer_historical_value} / nullif({measure.count_of_customer_orders}, 0)
     columns:
       - name: customer_id
         description: unique identifier of customers
@@ -17,9 +28,9 @@ models:
         description: Date of customer's most recent order
       - name: count_of_customer_orders
         description: Count of customer's order regardless of status
-      - name: count_of_customer_orders_delivered
+      - name: count_of_customer_orders_completed
         description: Count of customer's order with status 'delivered'
-      - name: customer_historical_value
+      - name: total_customer_historical_value
         description: Total value of all sales to a customer
-      - name: customer_historical_value_delivered
+      - name: total_customer_historical_value_completed
         description: Total value of all sales to a customer with status 'delivered'

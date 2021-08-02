@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: base_customer_orders
+  - name: customer_orders__base
     columns:
       - name: order_id
       - name: customer_id
@@ -9,7 +9,7 @@ models:
       - name: customer_order_status
       - name: is_delivered
 
-  - name: base_customer_payments
+  - name: customer_payments__base
     columns:
       - name: customer_payment_id
       - name: customer_order_id
@@ -19,7 +19,7 @@ models:
       - name: created_at,
       - name: _batched_at
 
-  - name: base_customer
+  - name: customer__base
     columns:
       - name: customer_id
       - name: customer
