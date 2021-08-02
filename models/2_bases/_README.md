@@ -4,15 +4,12 @@ This directory is for source-related business logic.
 The objectives of this layer of your project should have:
 
 * enforce naming convention of the project rather than the source systems
-* model source records as business events
-* explicit timezones for columns of datatype date or timestamp
+* model single source relations as business events at the desired granularity by unioning, denormalising or deduplicating.
+* set explicit timezones for columns of datatype date or timestamp
 
-Write select queries here that:
+As described at [https://docs.getdbt.com/docs/guides/best-practices#separate-source-centric-and-business-centric-transformations]
 
-* renaming and recasting columns
-* unioning, joining or deduplicating source data to ensure your model has the correct grain
-
-Rename and recast columns once
+### Rename and recast columns once
 
 Raw data is generally stored in a source-conformed structure, that is, following the schema and naming conventions that the source defines. Not only will this structure differ between different sources, it is also likely to differ from the naming conventions you wish to use for analytics.
 
@@ -23,3 +20,4 @@ Rename fields and tables to fit the conventions you wish to use within your proj
 
 Recast fields into the correct data type, for example, changing dates into UTC and prices into dollar amounts.
 All subsequent data models should be built on top of these models, reducing the amount of duplicated code.
+```

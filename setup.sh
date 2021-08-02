@@ -16,7 +16,7 @@
 # pyenv local 3.9.6/envs/dbt_shop && pyenv activate 3.9.6/envs/dbt_shop 
 # pip install -r requirements.txt
 
-export DBT_PROFILES_DIR=${PWD}/.dbt/
+export DBT_PROFILES_DIR=${PWD}
 export DBT_METHOD=oauth
 export DBT_PROJECT=daniel-bartley-sandbox 
 export DBT_PRIORITY=interactive

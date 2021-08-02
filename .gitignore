@@ -6,5 +6,5 @@
 .venv/
 .ds_store
 .env
+.user.yml
 dev.env
-
