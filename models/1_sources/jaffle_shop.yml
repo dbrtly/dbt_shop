@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: jaffle_shop
+  - name: raw_jaffle_shop
     description: A fictional e-commerce store for tutorial and demo purposes
     project: dbt-tutorial
     loader: dbt_labs
@@ -11,6 +11,11 @@ sources:
     tables:
       - name: customers
         description: Jaffle Shop customers
+        columns:
+          - name: customer_id
+          - name: customer
+          - name: first_name
+          - name: last_name
 
       - name: customer_orders
         identifier: orders

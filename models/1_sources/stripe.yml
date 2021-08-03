@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: stripe
+  - name: raw_stripe
     description: A fictional stripe account of the jaffle_shop business for tutorial and demo purposes
     project: dbt-tutorial
     loader: dbt_labs

@@ -1,10 +1,10 @@
 with 
 
 customers as (
-    select * from {{ ref('customer__base') }} ),
+    select * from {{ ref('customer') }} ),
 
 orders as (
-    select * from {{ ref('customer_orders__curate') }} ),
+    select * from {{ ref('customer_orders') }} ),
 
 payments as (
     select * from {{ ref('customer_payments__base') }} ),

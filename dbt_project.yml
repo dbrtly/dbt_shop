@@ -36,7 +36,10 @@ models:
       materialized: table
 
 seeds:
-  +quote_columns: false
-#  dbt_shop:
+  dbt_shop:
+    +quote_columns: false
+    schema: seeds
 
+# vars:
+#   DBT_PROFILES_DIR: ${PWD}
     

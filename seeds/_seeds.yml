@@ -1,0 +1,36 @@
+version: 2
+
+seeds:
+  - name: abc_customers
+    description: Jaffle Shop customers
+    columns:
+      - name: id
+        description: Unique identifier of a customer 
+      - name: first_name
+        description: First name of customer
+      - name: last_name
+        description: Surname of customer
+      - name: email 
+        description: registered email address of customer on dbt_shop app 
+      
+  - name: abc_customer_orders
+    columns:
+      - name: id
+        description: Unique identifier of a customer order
+        tests:
+          - not_null
+          - unique
+      - name: user_id
+        description: Unique identifier of a dbt_shop user
+      - name: order_date
+        description: Date of a customer_order
+      - name: status
+        description: Delivery status of a customer_order
+
+  - name: abc_customer_payments
+    columns:
+      - name: id
+      - name: order_id
+      - name: paymentmethod
+      - name: amount
+        
