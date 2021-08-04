@@ -1,6 +1,8 @@
-with source as (
+with 
 
-    select * from {{ ref('sales_orders__base') }}
+source as (
+
+    select * from {{ ref('sales_orders__blend') }}
 
 ),
 

@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: sales_orders__base
+  - name: sales_orders__base_abc
     columns:
       - name: sales_order_id
         tests:
@@ -14,9 +14,12 @@ models:
       - name: sales_order_status
       - name: is_delivered
 
-  - name: customer_payments__base
+  - name: customer_payments__base_abc
     columns:
       - name: customer_payment_id
+        test: 
+          - not_null
+          - unique
       - name: sales_order_id
       - name: payment_method
         test:
@@ -27,9 +30,12 @@ models:
       - name: created_at,
       - name: _batched_at
 
-  - name: customer__base
+  - name: customer__base_abc
     columns:
       - name: customer_id
+        test: 
+          - not_null
+          - unique
       - name: customer
       - name: first_name
       - name: last_name

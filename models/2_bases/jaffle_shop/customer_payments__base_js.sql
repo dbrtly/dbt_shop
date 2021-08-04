@@ -12,8 +12,8 @@ renamed as (
         paymentmethod as payment_method,
         status as payment_status,
         amount as payment_amount,
-        created	as created_at,
-        _batched_at
+        timestamp(created) as created_at,
+        timestamp(_batched_at) as _batched_at
 
     from source
 

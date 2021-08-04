@@ -1,7 +1,7 @@
 version: 2
 
 seeds:
-  - name: abc_customers
+  - name: abc__customers
     description: Jaffle Shop customers
     columns:
       - name: id
@@ -13,7 +13,7 @@ seeds:
       - name: email 
         description: registered email address of customer on dbt_shop app 
       
-  - name: abc_customer_orders
+  - name: abc__customer_orders
     columns:
       - name: id
         description: Unique identifier of a customer order
@@ -27,7 +27,7 @@ seeds:
       - name: status
         description: Delivery status of a customer_order
 
-  - name: abc_customer_payments
+  - name: abc__customer_payments
     columns:
       - name: id
       - name: order_id

@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: sales_orders__base_js
+    columns:
+      - name: sales_order_id
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        tests:
+          - not_null
+      - name: sales_order_date
+      - name: sales_order_status
+      - name: is_delivered
+
+  - name: customer_payments__base_js
+    columns:
+      - name: customer_payment_id
+        test: 
+          - not_null
+          - unique
+      - name: sales_order_id
+      - name: payment_method
+        test:
+          accepted values:
+            values: ['Amex', 'Diners', 'Mastercard', 'Visa'] 
+      - name: payment_status
+      - name: payment_amount
+      - name: created_at,
+      - name: _batched_at
+
+  - name: customer__base_js
+    columns:
+      - name: customer_id
+        test: 
+          - not_null
+          - unique
+      - name: customer
+      - name: first_name
+      - name: last_name

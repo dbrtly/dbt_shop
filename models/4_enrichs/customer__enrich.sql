@@ -1,16 +1,14 @@
 with source as (
 
-    select * from {{ ref('customer__base') }}
+    select * from {{ ref('customer__blend') }}
 
 ),
 
 enrich as (
 
     select
-        customer_id,
-        'first_name' || ' ' || 'last_name' as customer,
-        first_name,
-        last_name
+        {{ dbt_utils.star(from=ref('customer__blend')) }},
+        'first_name' || ' ' || 'last_name' as customer
 
     from source
 

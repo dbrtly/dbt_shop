@@ -7,7 +7,7 @@ orders as (
     select * from {{ ref('sales_orders__enrich') }} ),
 
 payments as (
-    select * from {{ ref('customer_payments__base') }} ),
+    select * from {{ ref('customer_payments__blend') }} ),
 
 sales_orders__agg as (
 

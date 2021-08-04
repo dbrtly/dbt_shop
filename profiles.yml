@@ -10,7 +10,7 @@ dbt_shop:
       timeout_seconds: 300
       location: US # Optional, one of US or EU
       priority: interactive
-      retries: 5
+      retries: 0
       vars: 
         - default_materialisation: view
 

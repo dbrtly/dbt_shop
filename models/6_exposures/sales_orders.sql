@@ -1,6 +1,8 @@
 {% set payment_methods = ['credit_card', 'coupon', 'bank_transfer', 'gift_card'] %}
 
-with orders as (
+with 
+
+orders as (
 
     select * from {{ ref('sales_orders__enrich') }}
 
@@ -8,7 +10,7 @@ with orders as (
 
 payments as (
 
-    select * from {{ ref('customer_payments__base') }}
+    select * from {{ ref('customer_payments__blend') }}
 
 ),
 
