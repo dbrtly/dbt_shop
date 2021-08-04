@@ -10,7 +10,6 @@ exposures:
       Did someone say "exponential growth"?
     
     depends_on:
-      # - ref('customer')
       - ref('sales_orders')
       
     owner:
@@ -25,7 +24,6 @@ exposures:
       Semantic layer which includes measure meta data
     
     depends_on:
-      # - ref('customer')
       - ref('sales_orders')
       
     owner:

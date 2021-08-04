@@ -31,8 +31,9 @@ target-path: '.dbt/artifacts'  # directory which will store compiled SQL files
 models:
   dbt_shop:
     materialized: '{{ var("default_materialisation", "view") }}'
-    # Applies to all files under models/example/
+    # Applies to all files under models/6_exposures/
     6_exposures:
+      tag: exposures
       materialized: table
 
 seeds:

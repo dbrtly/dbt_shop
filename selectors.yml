@@ -1,0 +1,11 @@
+
+# CONFIG BUG: this doesn't work for me yet :(
+
+# run this selector with the job definition below
+# dbt run --selector my_demo_selector 
+
+selectors:
+  - name: my_demo_selector
+    description: Hello World selector for demo purposes
+    definition:
+      tag: exposures

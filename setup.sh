@@ -16,6 +16,7 @@
 # pyenv local 3.9.6/envs/dbt_shop && pyenv activate 3.9.6/envs/dbt_shop 
 # pip install -r requirements.txt
 
+export DBT_MODE=dev
 export DBT_PROFILES_DIR=${PWD}
 export DBT_METHOD=oauth
 export DBT_PROJECT=daniel-bartley-sandbox 
@@ -29,11 +30,23 @@ pip install --upgrade pip
 # install requirements
 pip install requirements.txt
 
-# authenicate with google cloud for oauth
-echo 'ensure google cloud sdk is installed'
-echo 'see https://cloud.google.com/sdk/downloads'
+if [ ${DBT_MODE}=dev ]
+then
+  # authenicate with google cloud for oauth
+  echo 'ensure google cloud sdk is installed'
+  echo 'see https://cloud.google.com/sdk/downloads'
 
-gcloud auth application-default login \
-  --scopes=https://www.googleapis.com/auth/bigquery,\
-https://www.googleapis.com/auth/drive.readonly,\
-https://www.googleapis.com/auth/iam.test
+  gcloud auth application-default login \
+    --scopes=https://www.googleapis.com/auth/bigquery,\
+  https://www.googleapis.com/auth/drive.readonly,\
+  https://www.googleapis.com/auth/iam.test
+fi
+
+dbt seed
+dbt deps
+dbt compile
+# validate source freshness
+dbt source snapshot-freshness
+# validate exposure dependencies
+# dbt test --models +exposure:* 
+dbt run
