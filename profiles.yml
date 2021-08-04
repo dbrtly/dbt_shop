@@ -10,7 +10,9 @@ dbt_shop:
       timeout_seconds: 300
       location: US # Optional, one of US or EU
       priority: interactive
-      retries: 1
+      retries: 5
+      vars: 
+        - default_materialisation: view
 
     fancy:
       type: bigquery
@@ -22,3 +24,5 @@ dbt_shop:
       location: US # Optional, one of US or EU
       priority: "{{ env_var('DBT_PRIORITY') }}"
       retries: 1
+      vars: 
+        - default_materialisation: ephemeral

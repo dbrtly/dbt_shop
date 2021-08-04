@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: sales_orders__enrich
+    meta:
+     metriql:
+      measures:
+        count_of_sales_orders:
+          aggregation: count
+          column: count_of_sales_orders
+        count_of_customer_orders_completed:
+          aggregation: count
+          column: customer_historical_value
+          filters: [{dimension: sales_order_status, operator: '=', value: 'completed'}]
+        first_order:
+          aggregation: min
+          column: sales_order_date
+        most_recent_order:
+          aggregation: max
+          column: sales_order_date
+    columns:
+      - name: order_id
+      - name: customer_id
+      - name: order_date
+      - name: customer_order_status
+      - name: is_completed

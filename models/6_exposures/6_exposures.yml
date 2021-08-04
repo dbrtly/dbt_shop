@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: customer_orders
+    # meta:
+    #  metriql:
+    #   measures:
+    #     count_of_customer_orders:
+    #       aggregation: sum
+    #       column: count_of_customer_orders
+    #     customer_historical_value:
+    #       aggregation: sum
+    #       column: customer_historical_value
+    #     dummy_measure:
+    #       sql: {measure.customer_historical_value} / nullif({measure.count_of_customer_orders}, 0)
+    columns:
+      - name: customer_id
+        description: unique identifier of customers
+      - name: name
+        description: Customer first name and last name
+      - name: first_name
+        description: Customer first name
+      - name: last_name
+        description: Customer last name
+      - name: first_order_date
+        description: Date of customer's first order
+      - name: latest_order_date
+        description: Date of customer's most recent order
+      - name: count_of_sales_orders_orders
+        description: Count of customer's order regardless of status
+      - name: count_of_sales_orders_orders_completed
+        description: Count of customer's order with status 'completed'
+      - name: total_customer_historical_value
+        description: Total value of all sales to a customer
+      - name: total_customer_historical_value_completed
+        description: Total value of all sales to a customer with status 'completed'
+      - name: order_date
+      - name: orders_status
+      - name: total_bank_transfer_amount
+      - name: total_credit_card_amount
+      - name: total_coupon_amount
+      - name: total_gift_card_amount
+      - name: total_payment_amount

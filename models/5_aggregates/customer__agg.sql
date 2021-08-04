@@ -1,24 +1,24 @@
 with 
 
 customers as (
-    select * from {{ ref('customer') }} ),
+    select * from {{ ref('customer__enrich') }} ),
 
 orders as (
-    select * from {{ ref('customer_orders') }} ),
+    select * from {{ ref('sales_orders__enrich') }} ),
 
 payments as (
     select * from {{ ref('customer_payments__base') }} ),
 
-customer_orders__agg as (
+sales_orders__agg as (
 
     select
         customer_id,
 
-        {{ metric_min( 'order_date') }} as first_order,
-        {{ metric_max( 'order_date') }} as most_recent_order,
-        {{ metric_count( 'customer_order_id') }} as count_of_customer_orders,
-        {{ metric_count_when_boolean('customer_order_id', 'is_completed') }} 
-            as count_of_customer_orders_completed
+        {{ metric_min( 'sales_order_date') }} as first_order,
+        {{ metric_max( 'sales_order_date') }} as most_recent_order,
+        {{ metric_count( 'sales_order_id') }} as count_of_sales_orders,
+        {{ metric_count_when_boolean('sales_order_id', 'is_completed') }} 
+            as count_of_sales_orders_completed
         
     from orders
 
@@ -36,7 +36,7 @@ customer_payments__agg as (
 
     from payments
 
-    left join orders using (customer_order_id)
+    left join orders using (sales_order_id)
 
     group by 1
 
@@ -49,16 +49,16 @@ joined as (
         customers.customer,
         customers.first_name,
         customers.last_name,
-        customer_orders__agg.first_order,
-        customer_orders__agg.most_recent_order,
-        customer_orders__agg.count_of_customer_orders, 
-        customer_orders__agg.count_of_customer_orders_completed, 
+        sales_orders__agg.first_order,
+        sales_orders__agg.most_recent_order,
+        sales_orders__agg.count_of_sales_orders, 
+        sales_orders__agg.count_of_sales_orders_completed, 
         customer_payments__agg.total_customer_historical_value,
-        customer_payments__agg.total_customer_historical_value_completed,
+        customer_payments__agg.total_customer_historical_value_completed
 
     from customers
 
-    left join customer_orders__agg using (customer_id)
+    left join sales_orders__agg using (customer_id)
 
     left join customer_payments__agg using (customer_id)
 

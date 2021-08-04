@@ -1,0 +1,33 @@
+version: 2
+
+exposures:
+
+  - name: weekly_jaffle_metrics
+    type: dashboard
+    maturity: high
+    url: https://bi.tool/dashboard
+    description: >
+      Did someone say "exponential growth"?
+    
+    depends_on:
+      # - ref('customer')
+      - ref('sales_orders')
+      
+    owner:
+      name: analytics lead of jaffle shop
+      email: data@jaffleshop.com
+
+  - name: metric_layer
+    type: application
+    maturity: high
+    url: https://metric_layer
+    description: >
+      Semantic layer which includes measure meta data
+    
+    depends_on:
+      # - ref('customer')
+      - ref('sales_orders')
+      
+    owner:
+      name: analytics lead of jaffle shop
+      email: data@jaffleshop.com

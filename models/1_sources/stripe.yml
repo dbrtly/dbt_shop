@@ -1,9 +1,10 @@
 version: 2
 
 sources:
-  - name: raw_stripe
+  - name: stripe # must match the dataset/schema name
     description: A fictional stripe account of the jaffle_shop business for tutorial and demo purposes
     project: dbt-tutorial
+    dataset: stripe # can't do this. 
     loader: dbt_labs
     quoting:
       database: true 

@@ -1,13 +1,13 @@
 with source as (
 
-    select * from {{ source('raw_jaffle_shop', 'customers') }}
+    select * from {{ source('jaffle_shop', 'customers') }}
 
 ),
 
 renamed as (
 
     select
-        customer_id,
+        id as customer_id,
         first_name,
         last_name
 

@@ -12,7 +12,7 @@ profile: dbt_shop
 # These configurations specify where dbt should look for different types of files.
 # resource-path configure expecting a value of type array
 clean-targets: ['.dbt/artifacts']
-analysis-paths: ['analyses']
+analysis-paths: ['analyses_']
 macro-paths: ['macros']
 source-paths: ['models']
 data-paths: ['seeds']
@@ -30,9 +30,9 @@ target-path: '.dbt/artifacts'  # directory which will store compiled SQL files
 
 models:
   dbt_shop:
-    materialized: view 
+    materialized: '{{ var("default_materialisation", "view") }}'
     # Applies to all files under models/example/
-    4_aggregates:
+    6_exposures:
       materialized: table
 
 seeds:
@@ -40,6 +40,7 @@ seeds:
     +quote_columns: false
     schema: seeds
 
-# vars:
+vars:
+  default_materialisation: view
 #   DBT_PROFILES_DIR: ${PWD}
     

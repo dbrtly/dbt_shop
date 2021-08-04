@@ -1,9 +1,10 @@
 version: 2
 
 sources:
-  - name: raw_jaffle_shop
+  - name: jaffle_shop
     description: A fictional e-commerce store for tutorial and demo purposes
     project: dbt-tutorial
+    # dataset: jaffle_shop
     loader: dbt_labs
     quoting:
       database: true 
@@ -13,11 +14,14 @@ sources:
         description: Jaffle Shop customers
         columns:
           - name: customer_id
+            test:
+              - non_null
+              - unique
           - name: customer
           - name: first_name
           - name: last_name
 
-      - name: customer_orders
+      - name: sales_orders
         identifier: orders
         loaded_at_field: _etl_loaded_at
 
